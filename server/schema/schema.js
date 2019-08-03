@@ -44,6 +44,7 @@ const BookType = new GraphQLObjectType({
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
     author: {
+      //created relationship between the book and author
       type: AuthorType,
       resolve(parent, args) {
         console.log(parent);
@@ -61,6 +62,7 @@ const AuthorType = new GraphQLObjectType({
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
     books: {
+      //created relationship between the author and book
       type: new GraphQLList(BookType), //for multiple books we need to bring in GraphQLList
       resolve(parent, args) {
         return _.filter(books, { authorId: parent.id });
@@ -74,6 +76,7 @@ const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     book: {
+      // for particular book
       type: BookType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
@@ -83,6 +86,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     author: {
+      // for particular author
       type: AuthorType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
@@ -90,12 +94,14 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     books: {
+      // for list of all books
       type: new GraphQLList(BookType),
       resolve(parent, args) {
         return books;
       }
     },
     authors: {
+      // for list of all authors
       type: new GraphQLList(AuthorType),
       resolve(parent, args) {
         return authors;
@@ -104,6 +110,7 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
+// pass the rootQuery to access it in the graphql middleware in index.js
 module.exports = new GraphQLSchema({
   query: RootQuery
 });
