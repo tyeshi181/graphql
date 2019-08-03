@@ -14,6 +14,7 @@ mongoose.connection.once("open", () => {
   // to verify that we are connected to cloud database
   console.log("connected to database");
 });
+// after creating the mongoose connection we need to make the models for our database. So we are going to create a models folder.
 server.use(
   "/graphql",
   graphqlHTTP({
