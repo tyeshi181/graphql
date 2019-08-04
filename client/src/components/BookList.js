@@ -4,7 +4,6 @@ import { getBooksQuery } from "../queries/queries";
 
 class BookList extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         {this.props.data.loading ? (
@@ -12,7 +11,7 @@ class BookList extends Component {
         ) : (
           <ul>
             {this.props.data.books.map(book => (
-              <li>{book.name}</li>
+              <li key={book.id}>{book.name}</li>
             ))}
           </ul>
         )}
