@@ -1,0 +1,36 @@
+#booklist-div {
+  box-sizing: border-box;
+  color: rebeccapurple;
+}
+#booklist-div li {
+  list-style-type: none;
+  background-color: grey;
+  padding: 10px 20px;
+  border: 1px solid grey;
+  cursor: pointer;
+  margin-top: 15px;
+}
+#booklist-div ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+form {
+  background: #fff;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+}
+
+form .field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+form button {
+  padding: 5px 20px;
+  margin-top: 10px;
+}

@@ -20,13 +20,32 @@ const getAuthorsQuery = gql`
   }
 `;
 
+const getBookQuery = gql`
+  query($id: ID) {
+    book(id: $id) {
+      id
+      name
+      genre
+      author {
+        id
+        name
+        age
+        books {
+          name
+          id
+        }
+      }
+    }
+  }
+`;
+// add $name to pass as variable in the addBook, String! as type string not nullable
 const addBookMutation = gql`
-  mutation {
-    addBook(name: "", genre: "", authorId: "") {
+  mutation($name: String!, $genre: String!, $authorId: ID!) {
+    addBook(name: $name, genre: $genre, authorId: $authorId) {
       name
       id
     }
   }
 `;
 
-export { getBooksQuery, getAuthorsQuery, addBookMutation };
+export { getBooksQuery, getAuthorsQuery, addBookMutation, getBookQuery };

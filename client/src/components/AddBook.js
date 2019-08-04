@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { graphql, compose } from "react-apollo";
-import { getAuthorsQuery, addBookMutation } from "../queries/queries";
+import {
+  getAuthorsQuery,
+  addBookMutation,
+  getBooksQuery
+} from "../queries/queries";
 
 class AddBook extends Component {
   constructor(props) {
@@ -14,7 +18,19 @@ class AddBook extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.addBookMutation({
+      variables: {
+        name: this.state.name,
+        genre: this.state.genre,
+        authorId: this.state.authorId
+      },
+      refetchQueries: [{ query: getBooksQuery }] // after the mutation the ui displays the change instantly without us requiring to refresh the page
+    });
+    this.setState({
+      name: "",
+      genre: "",
+      authorId: ""
+    });
   };
 
   onChangeHandler = e => {
@@ -27,7 +43,7 @@ class AddBook extends Component {
     console.log(getAuthorsQuery);
     return (
       <form onSubmit={this.submitHandler}>
-        <div>
+        <div className="field">
           <label>Book Name:</label>
           <input
             type="text"
@@ -36,7 +52,7 @@ class AddBook extends Component {
             onChange={this.onChangeHandler}
           />
         </div>
-        <div>
+        <div className="field">
           <label>Genre:</label>
           <input
             type="text"
@@ -45,7 +61,7 @@ class AddBook extends Component {
             onChange={this.onChangeHandler}
           />
         </div>
-        <div>
+        <div className="field">
           <label>Author:</label>
 
           <option>Select author</option>
@@ -75,5 +91,5 @@ class AddBook extends Component {
 // to bind multiple queries, we import compose
 export default compose(
   graphql(getAuthorsQuery, { name: "getAuthorsQuery" }), // name property is for how we get the data back as this name
-  graphql(addBookMutation, { name: "addBookMutation" })
+  graphql(addBookMutation, { name: "addBookMutation" }) // this name is used to call the method
 )(AddBook);
