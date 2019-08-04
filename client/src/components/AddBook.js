@@ -63,8 +63,6 @@ class AddBook extends Component {
         </div>
         <div className="field">
           <label>Author:</label>
-
-          <option>Select author</option>
           {getAuthorsQuery.loading ? (
             <select>
               <option>Loading authors</option>

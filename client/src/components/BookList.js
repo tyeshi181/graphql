@@ -12,7 +12,8 @@ class BookList extends Component {
   }
   render() {
     return (
-      <div id="booklist-div">
+      <div id="bookList-div">
+        <h2>List of Books</h2>
         {this.props.data.loading ? (
           "please wait, loading..."
         ) : (

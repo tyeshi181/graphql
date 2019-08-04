@@ -1,27 +1,32 @@
-#booklist-div {
+#bookList-div {
   box-sizing: border-box;
   color: rebeccapurple;
 }
-#booklist-div li {
+#bookList-div li {
   list-style-type: none;
   background-color: grey;
   padding: 10px 20px;
   border: 1px solid grey;
   cursor: pointer;
-  margin-top: 15px;
+  margin: 15px;
 }
-#booklist-div ul {
+#bookList-div ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+}
+
+#bookList-div h2 {
+  text-align: center;
 }
 form {
   background: #fff;
+  color: rebeccapurple;
   padding: 20px;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 400px;
+  background-color: grey;
 }
 
 form .field {
@@ -30,7 +35,30 @@ form .field {
   grid-gap: 10px;
 }
 
+form .field option {
+  color: rebeccapurple;
+}
 form button {
-  padding: 5px 20px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 20px;
   margin-top: 10px;
+  cursor: pointer;
+}
+form label {
+  text-align: right;
+  padding: 6px;
+}
+
+#bookDetails-div {
+  box-sizing: border-box;
+}
+#bookDetails-div ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+#bookDetails-div li {
+  list-style-type: none;
+  background-color: grey;
 }

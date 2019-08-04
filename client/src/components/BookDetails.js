@@ -6,12 +6,12 @@ class BookDetails extends Component {
   render() {
     const { book } = this.props.data;
     return (
-      <div>
+      <div id="bookDetails-div">
         {book ? (
           <div>
-            <h3>{book.name}</h3>
-            <p>{book.genre}</p>
-            <p>{book.author.name}</p>
+            <h3>Book name: {book.name}</h3>
+            <p>Genre: {book.genre}</p>
+            <p>Author: {book.author.name}</p>
             <h4>All books by Author</h4>
             <ul>
               {book.author.books.map(book => (
